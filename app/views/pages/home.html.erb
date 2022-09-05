@@ -1,0 +1,19 @@
+<h1>Pages#home</h1>
+<p>Find me in app/views/pages/home.html.erb</p>
+
+<% if current_user %>
+  <p>You are a [<%= current_user.role %>]</p>
+  <p>Hello <%= current_user.email%>!</p>
+  <% if current_user.role == 'artist' %>
+    <%= render partial: 'artist' %>
+  <% end %>
+  <p>You have successfully authenticated with Devise account</p>
+  <p><%= link_to 'Sign out',destroy_user_session_path, method: :delete %></p>
+<% else %>
+  <p>You are not Signed in</p>
+  <p><%= link_to 'Login',new_user_session_path %></p>
+  <br />
+  <p><%= link_to 'Sign up',new_user_registration_path %></p>
+<% end %>
+
+
