@@ -9,9 +9,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum role: %i[artist manager]
-  after_initialize :set_default_role, if: :new_record?
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+  PASSWORD_FORMAT = /\A(?=.{8,})(?=.*[A-Z])(?=.*[[:^alnum:]])/x.freeze
 
-  def set_default_role
-    self.role 
-  end
+  validates :password,
+            presence: true,
+            format: { with: PASSWORD_FORMAT },
+            confirmation: true
 end

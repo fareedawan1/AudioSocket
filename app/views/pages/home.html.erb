@@ -1,10 +1,9 @@
 
-<% if current_user %>
-  <p>You are a [<%= current_user.role %>]</p>
-  <p>Hello <%= current_user.email%>!</p>
-  <%= render partial: 'artist' if current_user.role == 'artist'%>
-  <p>You have successfully authenticated with Devise account</p>
+<% if current_user&.role == 'artist' %>
+    <h1>Artist enter your details here</h1>
+  <p><%= link_to 'Update',edit_user_registration_path %></p>
   <p><%= link_to 'Sign out',destroy_user_session_path, method: :delete %></p>
+  <%= link_to "Back", :back %>
 <% else %>
   <p>You are not Signed in</p>
   <p><%= link_to 'Login',new_user_session_path %></p>
