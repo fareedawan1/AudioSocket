@@ -30,4 +30,14 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+   activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: 'Please Specify an Email id'
+              taken: 'Please use a different Email id'
+              invalid: 'Please Specify a valid Email id'
+            password:
+              invalid: 'should contain minimum 8 characters with at least one capital letter and a special character'
