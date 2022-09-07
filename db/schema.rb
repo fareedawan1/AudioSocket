@@ -12,9 +12,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 202_209_051_151_20) do
+ActiveRecord::Schema.define(version: 20_220_907_081_743) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
+
+  create_table 'auditions', force: :cascade do |t|
+    t.string 'first_name'
+    t.string 'last_name'
+    t.string 'email'
+    t.string 'artist_name'
+    t.integer 'genre'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
 
   create_table 'users', force: :cascade do |t|
     t.string 'email', default: '', null: false
