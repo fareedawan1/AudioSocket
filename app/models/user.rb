@@ -8,12 +8,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum role: %i[artist manager]
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+  # Constants
   PASSWORD_FORMAT = /\A(?=.{8,})(?=.*[A-Z])(?=.*[[:^alnum:]])/x.freeze
 
+  # Enums
+  enum role: %i[artist manager]
+
+  # Validations
   validates :password,
             presence: true,
-            format: { with: PASSWORD_FORMAT },
-            confirmation: true
+            format: { with: PASSWORD_FORMAT }
+  validates :role, presence: true
 end
