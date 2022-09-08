@@ -5,7 +5,7 @@ class AuditionsController < ApplicationController
   # GET audition/index
   #
   def index
-    @auditons = Audition.order('created_at DESC')
+    @auditons = Audition.order(created_at: :desc)
   end
 
   # GET audition/new/:id
