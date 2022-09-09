@@ -21,7 +21,6 @@ gem 'bootstrap', '~> 5.2.0'
 gem 'ckeditor'
 gem 'devise'
 gem 'jquery-rails'
-gem 'mini_magick'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -34,7 +33,6 @@ gem 'select2-rails'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'tinymce-rails'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

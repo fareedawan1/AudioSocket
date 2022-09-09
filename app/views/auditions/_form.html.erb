@@ -31,7 +31,15 @@
       <%= f.label :How_did_you_hear_about_us, class: "form-label" %><br />
       <%= f.select :hear_about_us, options_for_select([['Twiiter', 'twiiter'],['Facebook', 'facebook'],['Instagram', 'instagram']]), {}, class: "mx-2 form-select" %>
     </div>
-
+    
+    <% content_for :ckeditor_form do %> 
+      <%= javascript_include_tag Ckeditor.cdn_url %> 
+    <% end %>
+    <div class="form-group">
+      <%= label_tag(:additional_info, "Description") %>
+      <i class="fa fa-asterisk">Required</i>
+      <%= f.cktext_area :additional_info, cols: 40, ckeditor: { uiColor: '#AADC6E' }, class: 'text form-control', required: true %>
+    </div>
     <br>
     <div class="actions mb-2">
       <%= f.submit "Submit Audition", class: 'btn btn-primary btn-lg' %>
