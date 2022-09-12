@@ -19,3 +19,4 @@
 //= require bootstrap-sprockets
 //= require select2
 //= require auditions
+//= require cocoon

@@ -1,6 +1,12 @@
 <p> First Name: <%= @audition.first_name %></p>
 <p> Last Name: <%= @audition.last_name %></p>
 <p> Artist Name: <%= @audition.artist_name %></p>
+<p> Song Links:
+<% @audition.songs.each do |song| %>
+  <%= song.link %>
+  <br>
+<% end %>
+</p>
 <p> Email: <%= @audition.email %></p>
 <p> Genre: <%= @audition.genre %></p>
 <p> How did you hear about us: <%= @audition.hear_about_us %></p>
