@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-lg bg-light"></nav>
+<div style="text-align:end">
+  <%= link_to "Logout",destroy_user_session_path, method: :delete, class: "nav-link" %></a>
+</div>
+</nav>
+<nav class="navbar navbar-expand-lg bg-light">
+<div class="container-fluid">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="">All</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="">Pending</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="">Approved</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="">Recieved</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="">Delete</a>
+      </li>
+    </ul>
+     
+    <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Search by Name,Artist,Email" aria-label="Search">
+      <input class="form-control me-2" type="search" placeholder="Select Date Range" aria-label="Search">
+    </form>
+  </div>
+</div>
+</nav>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Artist</th>
+      <th scope="col">Email</th>
+      <th scope="col">Genre</th>
+      <th scope="col">Submitted</th>
+      <th scope="col">Assigned To</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @auditons.each do |audition| %>
+    <tr>
+      <td><input type="checkbox" name="brand"> <%= audition.id %> </td>
+      <td><%= audition.first_name %> <%= audition.last_name %></td>
+      <td><%= audition.artist_name %></td>
+      <td><%= audition.email %></td>
+      <td><%= audition.genre %></td>
+      <td><%= audition.created_at %></td>
+      <td>William</td>
+      <td>Active</td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
