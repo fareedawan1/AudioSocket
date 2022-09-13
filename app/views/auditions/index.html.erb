@@ -1,35 +1,34 @@
 <nav class="navbar navbar-expand-lg bg-light"></nav>
-<div style="text-align:end">
-  <%= link_to "Logout",destroy_user_session_path, method: :delete, class: "nav-link" %></a>
-</div>
+  <div style="text-align:end">
+    <%= link_to "Logout",destroy_user_session_path, method: :delete, class: "nav-link" %></a>
+  </div>
 </nav>
 <nav class="navbar navbar-expand-lg bg-light">
-<div class="container-fluid">
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="">All</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="">Pending</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="">Approved</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="">Recieved</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="">Delete</a>
-      </li>
-    </ul>
-     
-    <%= form_tag auditions_path, method: :get do %>
-      <%= search_field_tag :search, params[:search], placeholder: 'Search by Name,Artist and Email' %>
-      <%= submit_tag "search" %>
-    <% end %>
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="">All</a>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Pending",  auditions_path(status: 'pending'), class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Accepted",  auditions_path(status: 'accepted'), class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Rejected",  auditions_path(status: 'rejected'), class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Deleted",  auditions_path(status: 'deleted'), class: "nav-link" %>
+        </li>
+      </ul>
+      <%= form_tag auditions_path, method: :get do %>
+        <%= search_field_tag :search, params[:search], placeholder: 'Search by Name,Artist and Email' %>
+        <%= submit_tag "search" %>
+      <% end %>
+    </div>
   </div>
-</div>
 </nav>
 <table class="table">
   <thead>

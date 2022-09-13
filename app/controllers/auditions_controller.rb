@@ -6,7 +6,13 @@ class AuditionsController < ApplicationController
   # GET audition/index
   #
   def index
-    @auditions = Audition.search(params[:search]).order("#{sort_column}  #{sort_direction}")
+    result = AuditionStatus.call(
+      status: params[:status],
+      search: params[:search],
+      sort_column: sort_column,
+      sort_direction: sort_direction
+    )
+    @auditions = result.auditions
   end
 
   # GET audition/new/:id
