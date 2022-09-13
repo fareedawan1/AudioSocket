@@ -5,7 +5,7 @@ class AuditionsController < ApplicationController
   helper_method :sort_column, :sort_direction
   # GET audition/index
   #
-  def index
+  def index # rubocop:disable Metrics/MethodLength
     result = AuditionStatus.call(
       status: params[:status],
       search: params[:search],
@@ -13,6 +13,10 @@ class AuditionsController < ApplicationController
       sort_direction: sort_direction
     )
     @auditions = result.auditions
+    respond_to do |format|
+      format.html
+      format.csv { send_data @auditions.to_csv, filename: "auditions-#{Date.today}.csv" }
+    end
   end
 
   # GET audition/new/:id

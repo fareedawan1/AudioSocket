@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'csv'
 # class audtion
 class Audition < ApplicationRecord
   # Association
@@ -24,6 +25,18 @@ class Audition < ApplicationRecord
             value: "%#{search.downcase}%")
     else
       all
+    end
+  end
+
+  def self.to_csv
+    attributes = %w[id first_name artist_name email genre created_at status]
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |audition|
+        csv << audition.attributes.values_at(*attributes)
+      end
     end
   end
 end
