@@ -15,4 +15,15 @@ class Audition < ApplicationRecord
   validate do
     errors.add(:base, 'maximum four songs are allowed.') if songs.reject(&:marked_for_destruction?).length > 4
   end
+
+  # Search Function
+  def self.search(search)
+    if search
+      where('lower(auditions.first_name) LIKE :value or lower(auditions.email) LIKE :value or
+      lower(auditions.artist_name) LIKE :value ',
+            value: "%#{search.downcase}%")
+    else
+      all
+    end
+  end
 end
