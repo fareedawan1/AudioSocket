@@ -35,13 +35,13 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Artist</th>
-      <th scope="col">Email</th>
-      <th scope="col">Genre</th>
-      <th scope="col">Submitted</th>
+      <th scope="col"><%= sortable " first_name ", "Name" %></th>
+      <th scope="col"><%= sortable " artist_name " %></th>
+      <th scope="col"><%= sortable " email " %></th>
+      <th scope="col"><%= sortable " genre " %></th>
+      <th scope="col"><%= sortable " created_at ", "Submitted" %></th>
       <th scope="col">Assigned To</th>
-      <th scope="col">Status</th>
+      <th scope="col"><%= sortable " status " %></th>
     </tr>
   </thead>
   <tbody>
