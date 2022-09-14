@@ -21,6 +21,7 @@ gem 'bootstrap', '~> 5.2.0'
 gem 'ckeditor'
 gem 'cocoon'
 gem 'devise'
+gem 'interactor-rails'
 gem 'jquery-rails'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

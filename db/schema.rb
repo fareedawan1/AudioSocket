@@ -11,7 +11,8 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-ActiveRecord::Schema.define(version: 20_220_912_052_734) do # rubocop:disable Metrics/BlockLength
+
+ActiveRecord::Schema.define(version: 20_220_912_134_621) do # rubocop:disable Metrics/BlockLength
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(version: 20_220_912_052_734) do # rubocop:disable Me
     t.text 'additional_info'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.integer 'status', default: 0
   end
 
   create_table 'ckeditor_assets', force: :cascade do |t|

@@ -2,10 +2,17 @@
 
 # Auditions_controller
 class AuditionsController < ApplicationController
+  helper_method :sort_column, :sort_direction
   # GET audition/index
   #
   def index
-    @auditons = Audition.order(created_at: :desc)
+    result = AuditionStatus.call(
+      status: params[:status],
+      search: params[:search],
+      sort_column: sort_column,
+      sort_direction: sort_direction
+    )
+    @auditions = result.auditions
   end
 
   # GET audition/new/:id
@@ -48,5 +55,13 @@ class AuditionsController < ApplicationController
   def audition_params
     params.require(:audition).permit(:first_name, :last_name, :artist_name, :email, :genre, :hear_about_us,
                                      :additional_info, songs_attributes: [:link])
+  end
+
+  def sort_column
+    params[:sort] || ' first_name '
+  end
+
+  def sort_direction
+    params[:direction] || ' asc '
   end
 end
