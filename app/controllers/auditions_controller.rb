@@ -53,6 +53,12 @@ class AuditionsController < ApplicationController
   def update
     @audition = Audition.find(params[:id])
     @audition.update(audition_params)
+    case @audition.status
+    when 'accepted'
+      UserMailer.acceptance_email(@audition).deliver_now
+    when 'rejected'
+      UserMailer.rejection_email(@audition).deliver_now
+    end
     redirect_to auditions_path
   end
 
