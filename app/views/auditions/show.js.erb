@@ -2,3 +2,16 @@ var showAudition = document.querySelector('#show-audition');
 showAudition.innerHTML = "<%= j render partial: 'auditions/modal', locals: { audition: @audition } %>";
 
 $("#auditionModal").modal('show');
+
+if ($('#change-status')) {
+  $('.status-dropdown').change(function(element) {
+    const { url } = element.currentTarget.dataset
+    const data = { audition: { status: element.currentTarget.value } }
+
+    $.ajax({
+      url: url,
+      type: 'PATCH',
+      data: data
+    });
+  });
+}

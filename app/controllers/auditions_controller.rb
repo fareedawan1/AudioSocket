@@ -50,7 +50,11 @@ class AuditionsController < ApplicationController
 
   # GET audition/update/:id
   #
-  def update; end
+  def update
+    @audition = Audition.find(params[:id])
+    @audition.update(audition_params)
+    redirect_to auditions_path
+  end
 
   # DELETE audition/destroy/:id
   #
@@ -60,7 +64,7 @@ class AuditionsController < ApplicationController
 
   def audition_params
     params.require(:audition).permit(:first_name, :last_name, :artist_name, :email, :genre, :hear_about_us,
-                                     :additional_info, songs_attributes: [:link])
+                                     :additional_info, :status, songs_attributes: [:link])
   end
 
   def sort_column

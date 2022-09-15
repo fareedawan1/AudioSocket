@@ -17,6 +17,7 @@
         <p> Genre: <%= audition.genre %></p>
         <p> How did you hear about us: <%= audition.hear_about_us %></p>
         <p> Additional Info: <%= audition.additional_info.html_safe if audition.additional_info.present? %></p>
+        <%= select_tag :status, options_for_select(Audition.statuses.keys), prompt: "Change Status", id: "change-status", class:"status-dropdown", data: { url: audition_path(audition), method: :patch } %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
