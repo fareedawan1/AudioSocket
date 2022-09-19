@@ -1,0 +1,16 @@
+<%= form_with(model: [@album,@track] , local: true ) do |f| %>
+  <div class="container-fluid w-50 border bg-white">
+    <div class="field mb-3 text-start">
+      <%= f.label :track_name, class: "form-label" %><br />
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+    <div class="field mb-3 text-start">
+      <%= f.label :song, class: "form-label" %><br />
+      <%= f.file_field :song, class: "form-control", direct_upload: true %>
+    </div>
+    <div class="actions mb-2">
+      <%= f.submit "ADD TO ALBUM AND SAVE", class: 'btn btn-primary ' %>
+      <%= f.submit "ADD TO ALBUM AND SUBMIT", class: 'btn btn-primary ' %>
+    </div>
+  </div>
+<% end %>

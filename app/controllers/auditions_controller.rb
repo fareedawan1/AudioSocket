@@ -66,6 +66,8 @@ class AuditionsController < ApplicationController
   #
   def destroy; end
 
+  def profile_update; end
+
   private
 
   def audition_params

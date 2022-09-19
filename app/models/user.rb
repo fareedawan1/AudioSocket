@@ -3,6 +3,8 @@
 # class user
 class User < ApplicationRecord
   extend Devise::Models
+  has_many :auditions, dependent: :destroy
+  has_many :albums, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

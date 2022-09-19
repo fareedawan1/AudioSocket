@@ -6,5 +6,15 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :auditions
+  resources :auditions do
+    member do
+      get 'profile_update'
+    end
+  end
+
+  resources :checkout, only: [:create]
+
+  resources :albums do
+    resources :tracks
+  end
 end

@@ -4,6 +4,7 @@ require 'csv'
 # class audtion
 class Audition < ApplicationRecord
   # Association
+  belongs_to :user
   has_many :songs, inverse_of: :audition
   accepts_nested_attributes_for :songs, reject_if: :all_blank, allow_destroy: true
 
