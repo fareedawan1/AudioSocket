@@ -1,34 +1,9 @@
-<nav class="navbar bg-light fixed-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">AudioSocket</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">AudioSocket</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Music</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</nav>
-
 <div id="container" class="container-fluid w-50 border rounded shadow mt-5 p-4 text-center ">
   <div id="container" class="container-fluid w-50 ">Profile</div>
-    <%= form_with scope: :audition, local:true do |f| %>
+    <%= form_with scope: @user, url: user_path, method: :put, local:true do |f| %>
     <div class="field mb-3 text-start">
       <%= f.label :artist_name, class: "form-label" %><br />
-      <%= f.text_field :artist_name, class: "form-control" %>
+      <%= f.text_field :artist_name, value: @user.auditions.last.artist_name,  class: "form-control" %>
     </div>
     <div class="field mb-3 text-start">
       <%= f.label :email, class: "form-label" %>
@@ -63,7 +38,7 @@
     </div>
 
     <div class="actions mb-2">
-      <%= f.submit "Upgrade to pro", class: 'btn btn-secondary btn-lg' %>
+      <%= link_to "Upgrade to pro", checkout_index_path ,class: 'btn btn-secondary btn-lg' %>
     </div>
 
     <div class="actions mb-2">
@@ -71,6 +46,4 @@
       <%= f.submit "Cancel", class: 'btn btn-light btn-lg' %>
     </div>
   <% end %>
-  <%= link_to 'pro', checkout_index_path, method: :post %>
-  <%= link_to 'albums', albums_path %>
 </div>

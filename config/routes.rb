@@ -2,15 +2,13 @@
 
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
-  root 'auditions#new'
+  root 'pages#home'
 
-  devise_for :users
+  devise_for :users, controllers: { passwords: 'passwords' }
 
-  resources :auditions do
-    member do
-      get 'profile_update'
-    end
-  end
+  resources :users
+
+  resources :auditions
 
   resources :checkout, only: [:create]
 

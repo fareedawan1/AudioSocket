@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_220_917_103_200) do # rubocop:disable Metrics/BlockLength
+ActiveRecord::Schema.define(version: 20_220_920_123_702) do # rubocop:disable Metrics/BlockLength
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -58,11 +58,6 @@ ActiveRecord::Schema.define(version: 20_220_917_103_200) do # rubocop:disable Me
     t.datetime 'updated_at', null: false
     t.integer 'status', default: 0
     t.bigint 'user_id'
-    t.string 'image'
-    t.string 'country'
-    t.text 'bio'
-    t.string 'website_link'
-    t.string 'social_link', default: [], array: true
     t.index ['user_id'], name: 'index_auditions_on_user_id'
   end
 
@@ -110,6 +105,10 @@ ActiveRecord::Schema.define(version: 20_220_917_103_200) do # rubocop:disable Me
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.integer 'role'
+    t.string 'country'
+    t.text 'bio'
+    t.string 'website_link'
+    t.string 'social_link', default: [], array: true
     t.index ['email'], name: 'index_users_on_email', unique: true
     t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
   end

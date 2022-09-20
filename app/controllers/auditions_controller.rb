@@ -30,7 +30,8 @@ class AuditionsController < ApplicationController
   # POST audition/create
   #
   def create
-    @audition = Audition.new(audition_params)
+    @user = User.find(params[:user_id])
+    @audition = @user.auditions.new(audition_params)
     if @audition.save
       redirect_to @audition
     else
@@ -65,8 +66,6 @@ class AuditionsController < ApplicationController
   # DELETE audition/destroy/:id
   #
   def destroy; end
-
-  def profile_update; end
 
   private
 
