@@ -1,8 +1,6 @@
-<nav class="navbar navbar-expand-lg bg-light"></nav>
-  <div style="text-align:end">
-    <%= link_to "Logout",destroy_user_session_path, method: :delete, class: "nav-link" %></a>
-  </div>
-</nav>
+<div style="text-align:end" class="bg-white pb-2 pt-2">
+  <%= link_to "Logout",destroy_user_session_path, method: :delete, class: "nav-link" %></a>
+</div>  
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -25,17 +23,15 @@
       </ul>
       <%= form_tag auditions_path, method: :get do %>
         <%= search_field_tag :search, params[:search], placeholder: 'Search by Name,Artist and Email' %>
-        <%= submit_tag "search" %>
+        <%= submit_tag "search", class: 'd-none' %>
       <% end %>
     </div>
   </div>
 </nav>
-<nav class="navbar navbar-expand-lg bg-light"></nav>
   <div style="text-align:end">
     <%= link_to "Export CSV", "#{auditions_url}.csv?status=#{params[:status]}", class:"btn btn-dark" %>
   </div>
-</nav>
-<table class="table">
+<table class="table bg-light ">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -48,18 +44,19 @@
       <th scope="col"><%= sortable " status " %></th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="audition-show">
     <% @auditions.each do |audition| %>
-    <tr>
-      <td><input type="checkbox" name="brand"> <%= audition.id %> </td>
-      <td><%= audition.first_name %> <%= audition.last_name %></td>
-      <td><%= audition.artist_name %></td>
-      <td><%= audition.email %></td>
-      <td><%= audition.genre %></td>
-      <td><%= audition.created_at %></td>
-      <td>William</td>
-      <td><%= audition.status %></td>
-    </tr>
+        <tr  class='clickable-row' data-url="<%= audition_path(audition, id: audition.id, format: :js) %>">
+          <td><input type="checkbox" name="brand"> <%= audition.id %> </td>
+          <td><%= audition.first_name %> <%= audition.last_name %></td>
+          <td><%= audition.artist_name %></td>
+          <td><%= audition.email %></td>
+          <td><%= audition.genre %></td>
+          <td><%= audition.created_at %></td>
+          <td>William</td>
+          <td><%= audition.status %></td>
+        </tr>
     <% end %>
   </tbody>
 </table>
+<div id="show-audition"></div>

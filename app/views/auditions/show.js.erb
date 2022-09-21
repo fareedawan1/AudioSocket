@@ -1,0 +1,4 @@
+var showAudition = document.querySelector('#show-audition');
+showAudition.innerHTML = "<%= j render partial: 'auditions/modal', locals: { audition: @audition } %>";
+
+$("#auditionModal").modal('show');

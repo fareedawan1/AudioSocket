@@ -1,0 +1,26 @@
+<div class="modal fade" id="auditionModal" tabindex="-1" aria-labelledby="auditionModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="auditionModalLabel"><%= audition.first_name %> <%= audition.last_name %></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p> Artist Name: <%= audition.artist_name %></p>
+        <p> Song Links:
+        <% audition.songs.each_with_index do |song,index| %>
+          <a href="<%= song.link %>"><%= "link-#{index+1}"%></a>
+          <br>
+        <% end %>
+        </p>
+        <p> Email: <%= audition.email %></p>
+        <p> Genre: <%= audition.genre %></p>
+        <p> How did you hear about us: <%= audition.hear_about_us %></p>
+        <p> Additional Info: <%= audition.additional_info.html_safe if audition.additional_info.present? %></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

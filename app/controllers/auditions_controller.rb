@@ -3,6 +3,8 @@
 # Auditions_controller
 class AuditionsController < ApplicationController
   helper_method :sort_column, :sort_direction
+  protect_from_forgery except: :show
+
   # GET audition/index
   #
   def index # rubocop:disable Metrics/MethodLength
