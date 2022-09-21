@@ -38,7 +38,7 @@
     </div>
 
     <div class="actions mb-2">
-      <%= link_to "Upgrade to pro", checkout_index_path ,class: 'btn btn-secondary btn-lg' %>
+      <%= link_to "Upgrade to pro", checkout_index_path(id: @user.id),method: 'post', remote: true ,class: 'btn btn-secondary btn-lg' %>
     </div>
 
     <div class="actions mb-2">
