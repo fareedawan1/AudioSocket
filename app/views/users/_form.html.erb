@@ -3,7 +3,7 @@
     <%= form_with scope: @user, url: user_path, method: :put, local:true do |f| %>
     <div class="field mb-3 text-start">
       <%= f.label :artist_name, class: "form-label" %><br />
-      <%= f.text_field :artist_name, value: @user.auditions.last.artist_name,  class: "form-control" %>
+      <%= f.text_field :artist_name, class: "form-control" %>
     </div>
     <div class="field mb-3 text-start">
       <%= f.label :email, class: "form-label" %>
@@ -43,7 +43,7 @@
 
     <div class="actions mb-2">
       <%= f.submit "Save", class: 'btn btn-secondary btn-lg' %>
-      <%= f.submit "Cancel", class: 'btn btn-light btn-lg' %>
+      <%= link_to 'Cancel', edit_user_path(current_user), class: 'btn btn-light btn-lg' %>
     </div>
   <% end %>
 </div>

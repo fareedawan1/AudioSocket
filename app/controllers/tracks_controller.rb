@@ -3,6 +3,7 @@
 # TrackController
 class TracksController < ApplicationController
   before_action :find_album, only: %i[create edit update destroy]
+  before_action :find_track, only: %i[edit update destroy]
   def new; end
 
   def create
@@ -11,17 +12,13 @@ class TracksController < ApplicationController
     redirect_to album_path(@album) if @track.save
   end
 
-  def edit
-    @track = Track.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @track = Track.find(params[:id])
     redirect_to album_path(@album) if @track.update(track_params)
   end
 
   def destroy
-    @track = Track.find(params[:id])
     redirect_to album_path(@album) if @track.destroy
   end
 
@@ -33,5 +30,9 @@ class TracksController < ApplicationController
 
   def find_album
     @album = Album.find_by(id: params[:album_id])
+  end
+
+  def find_track
+    @track = Track.find(params[:id])
   end
 end

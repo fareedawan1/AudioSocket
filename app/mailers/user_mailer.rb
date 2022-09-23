@@ -11,4 +11,9 @@ class UserMailer < ApplicationMailer
     @audition = audition
     mail(to: @audition.email)
   end
+
+  def audition_assign(user)
+    @user = user
+    mail(to: @user.email)
+  end
 end

@@ -2,8 +2,9 @@
 
 # AlbumsController
 class AlbumsController < ApplicationController
+  before_action :find_album, only: %i[show edit update destroy]
   def index
-    @albums = current_user.albums
+    @albums = Album.all.where(user_id:current_user)
   end
 
   def create
@@ -15,16 +16,11 @@ class AlbumsController < ApplicationController
     end
   end
 
-  def edit
-    @album = Album.find(params[:id])
-  end
+  def edit; end
 
-  def show
-    @album = Album.find(params[:id])
-  end
+  def show; end
 
   def update
-    @album = Album.find(params[:id])
     if @album.update(album_params)
       redirect_to albums_path
     else
@@ -33,7 +29,6 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
-    @album = Album.find(params[:id])
     redirect_to albums_path if @album.destroy
   end
 
@@ -42,4 +37,8 @@ class AlbumsController < ApplicationController
   def album_params
     params.require(:album).permit(:name, :image)
   end
+
+   def find_album
+    @album = Album.find(params[:id])
+   end
 end

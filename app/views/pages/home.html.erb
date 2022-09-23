@@ -1,11 +1,11 @@
-<% if current_user&.role == 'artist' %>
-  <% if current_user.auditions.present? %>
+<% if current_user&.type == 'Artist' %>
+  <% if current_user.audition.present? %>
     <p><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></p>
   <% else %>
     <p><%= link_to 'Submit Audition', new_audition_path %></p>
     <p><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></p>
   <% end %>
-<% elsif current_user&.role == 'manager'%>
+<% elsif current_user&.type == 'Manager'%>
   <p><%= link_to 'Audition Listing', auditions_path %></p>
   <p><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></p>
 <% else %>

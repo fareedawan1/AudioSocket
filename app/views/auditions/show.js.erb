@@ -15,3 +15,15 @@ if ($('#change-status')) {
     });
   });
 }
+if ($('#assign-manager')) {
+  $('.manager-list').change(function(element) {
+    const { url } = element.currentTarget.dataset
+    const data = { user: { manager: element.currentTarget.value } }
+
+    $.ajax({
+      url: url,
+      type: 'PATCH',
+      data: data
+    });
+  });
+}

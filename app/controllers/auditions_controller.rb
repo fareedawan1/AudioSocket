@@ -2,8 +2,9 @@
 
 # Auditions_controller
 class AuditionsController < ApplicationController
+  before_action :find_audition, only: %i[update show]
   helper_method :sort_column, :sort_direction
-  protect_from_forgery except: :show
+  skip_before_action :verify_authenticity_token, only: [:update]
 
   # GET audition/index
   #
@@ -31,7 +32,7 @@ class AuditionsController < ApplicationController
   #
   def create
     @user = User.find(params[:user_id])
-    @audition = @user.auditions.new(audition_params)
+    @audition = @user.build_audition(audition_params)
     if @audition.save
       redirect_to @audition
     else
@@ -42,7 +43,11 @@ class AuditionsController < ApplicationController
   # GET audition/show/:id
   #
   def show
-    @audition = Audition.find(params[:id])
+    @managers = []
+    @manager = User.where(type: 'Manager')
+    @manager.each do |manager|
+      @managers << manager.email
+    end
   end
 
   # GET audition/edit/:id
@@ -51,9 +56,13 @@ class AuditionsController < ApplicationController
 
   # GET audition/update/:id
   #
-  def update
-    @audition = Audition.find(params[:id])
-    @audition.update(audition_params)
+  def update # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+    @user = User.find_by(email: params[:user][:manager]) if params[:user]
+    if @user.present?
+      @audition.update(manager_id: @user.id, manager_email: @user.email)
+      UserMailer.audition_assign(@user).deliver_now
+    end
+    @audition.update(audition_params) unless audition_params.nil?
     case @audition.status
     when 'accepted'
       UserMailer.acceptance_email(@audition).deliver_now
@@ -70,8 +79,14 @@ class AuditionsController < ApplicationController
   private
 
   def audition_params
-    params.require(:audition).permit(:first_name, :last_name, :artist_name, :email, :genre, :hear_about_us,
-                                     :additional_info, :status, songs_attributes: [:link])
+    if params[:audition]
+      params.require(:audition).permit(:first_name, :last_name, :artist_name, :email, :genre, :hear_about_us,
+                                       :additional_info, :status, songs_attributes: [:link])
+    end
+  end
+
+  def find_audition
+    @audition = Audition.find(params[:id])
   end
 
   def sort_column
