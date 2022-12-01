@@ -18,7 +18,7 @@ class CheckoutController < ApplicationController
                                            quantity: 1
                                          }],
                                          mode: 'payment',
-                                         success_url: root_url,
+                                         success_url: edit_user_url(current_user),
                                          cancel_url: root_url
                                        })
     respond_to { |format| format.js }

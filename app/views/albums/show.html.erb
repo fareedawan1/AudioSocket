@@ -9,10 +9,12 @@
   <audio controls class="w-50">
     <source src="<%= rails_blob_url(t.song) %>" type = "audio/mpeg"/>
   </audio>
+  <% if t.status == 'pending'%>
   <div>
     <%= link_to 'edit', edit_album_track_path(@album,t), class:"btn btn-secondary" %>
     <%= link_to 'delete', album_track_path(@album,t), method: :delete, class:"btn btn-secondary" %>
   </div>
+  <% end %>
 <% end %>
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
   <%= link_to 'add track', new_album_track_path(@album), class:"btn btn-secondary"%>
