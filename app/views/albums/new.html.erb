@@ -1,0 +1,15 @@
+<%= form_with(model: [current_user.albums.build], local: true ) do |f| %>
+  <div class="container-fluid w-50 border bg-white">
+    <div class="field mb-3 text-start">
+      <%= f.label :album_name, class: "form-label" %><br />
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="field mb-3 text-start">
+      <%= f.label :image, class: "form-label" %><br />
+      <%= f.file_field :image, class: "form-control" %>
+    </div>
+    <div class="actions mb-2">
+      <%= f.submit "Create", class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

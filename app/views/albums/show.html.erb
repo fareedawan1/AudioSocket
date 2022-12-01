@@ -1,0 +1,20 @@
+<%= @album.name %>
+<div>
+  <%= image_tag @album.image, style: "width: 300px; height:200px" %>
+</div>
+<% @album.tracks.each do |t|%>
+  <div>
+    <%= t.title %>
+  </div>
+  <audio controls class="w-50">
+    <source src="<%= rails_blob_url(t.song) %>" type = "audio/mpeg"/>
+  </audio>
+  <div>
+    <%= link_to 'edit', edit_album_track_path(@album,t), class:"btn btn-secondary" %>
+    <%= link_to 'delete', album_track_path(@album,t), method: :delete, class:"btn btn-secondary" %>
+  </div>
+<% end %>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <%= link_to 'add track', new_album_track_path(@album), class:"btn btn-secondary"%>
+  <%= link_to 'back', albums_path, class:"btn btn-secondary"%>
+</div>

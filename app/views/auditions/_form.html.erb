@@ -1,6 +1,7 @@
 <div id="container" class="container-fluid w-50 border rounded shadow mt-5 p-4 text-center">
   <h2>Submit Audition</h2>
   <%= form_for @audition do |f| %>
+    <%= hidden_field_tag 'user_id', current_user.id  %>
     <div class="field mb-3 text-start">
       <%= f.label :first_name, class: "form-label" %><br />
       <%= f.text_field :first_name, class: "form-control" %>
